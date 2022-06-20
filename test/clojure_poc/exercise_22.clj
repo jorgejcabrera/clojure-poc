@@ -1,6 +1,15 @@
 (ns clojure-poc.exercise-22
   (:require [clojure.test :refer :all]))
 
+;; Solución propuesta por un compañero
+(defn aux-nth [idx item]
+  (nth item idx)
+  )
+
+(defn diagonal_v2 [mat]
+  (map-indexed aux-nth mat)
+  )
+
 ;; Definir una función para obtener la diagonal principal de una matriz cuadrada
 ;; que está representada como una lista de listas.
 (defn diagonal [x]
@@ -19,7 +28,9 @@
 (defn diagonal-rec [x]
   (if (= (count x) 1)
     x
-    (concat (map take '(1) (take 1 x)) (diagonal-rec (map rest (rest x))))
+    (concat
+      (map take '(1) (take 1 x))
+      (diagonal-rec (map rest (rest x))))
     )
   )
 
@@ -55,4 +66,15 @@
                            (1 2 3 4)
                            )) '((1) (2) (3) (4))))
     )
+
+  ;; Revisar este test no pasa es la implementación de un compañero
+  ;(testing "diagonal v2 de una matriz debería funcionar bien"
+  ;    (is (= (diagonal_v2 '(
+  ;                          (1 2 3 4)
+  ;                          (1 2 3 4)
+  ;                          (1 2 3 4)
+  ;                          (1 2 3 4)
+  ;                          )) '((1) (2) (3) (4))))
+  ;    )
+
   )
