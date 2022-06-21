@@ -3,12 +3,6 @@
 
 ;Definir una función para eliminar los elementos repetidos de una lista simple.
 
-
-(defn diff [s1 s2]
-  (mapcat
-    (fn [[x n]] (repeat n x))
-    (apply merge-with - (map frequencies [s1 s2]))))
-
 (defn remove_from_list
   [l elem]
   (filter (fn [x] (= (= x nil) false)) (replace {elem nil} l)))
